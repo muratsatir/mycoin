@@ -49,7 +49,7 @@ var form_action={
 				success: function(json) {
 					 if(json.success==true){
 						$(form).before('<div class="alert alert-success">' + json['message'] + '</div>');
-					 } 		
+					 }
 				},
 				error: function(xhr, ajaxOptions, thrownError) {
 					 alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
@@ -61,8 +61,8 @@ var form_action={
 				required: true
 		  }
 		 }
-	 });	
-	}	
+	 });
+	},
 	forgot:function(){
 
 	}

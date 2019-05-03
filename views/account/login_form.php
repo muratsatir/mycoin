@@ -4,18 +4,18 @@
 	</div>
 	<div class="row">
 		<div class="col-md-4 offset-md-4">
-			<form>
+			<form id="login_form">
 				<div class="form-group">
-					<label for="kullanici-adi">Kullanıcı Adı</label>
-					<input type="text" class="form-control" id="kullanici-adi" placeholder="Kullanıcı Adı">
+					<label for="username">Kullanıcı Adı</label>
+					<input type="text" class="form-control" id="username" name="username" placeholder="Kullanıcı Adı" />
 				</div>
 				<div class="form-group">
-					<label for="sifre">Şifre</label>
-					<input type="password" class="form-control" placeholder="Şifre">
+					<label for="password">Şifre</label>
+					<input type="password" class="form-control" id="password" name="password" placeholder="Şifre" />
 				</div>
 				<div class="form-check">
-					<input type="checkbox" class="form-check-input" id="beni-hatirla">
-					<label class="form-check-label" for="beni-hatirla">Beni Hatırla</label>
+					<input type="checkbox" class="form-check-input" id="rememberme" name="rememberme" />
+					<label class="form-check-label" for="rememberme">Beni Hatırla</label>
 				</div>
 				<div class="text-right">
 					<a href="/index.php?path=register">Kayıt Ol</a>
@@ -25,3 +25,11 @@
 		</div>
 	</div>
 </div>
+<script src="/assets/vendor/jquery-validation-1.19.0/jquery.validate.min.js"></script>
+<script src="/assets/vendor/jquery-validation-1.19.0/additional-methods.min.js"></script>
+<script src="/assets/vendor/jquery-validation-1.19.0/localization/messages_tr.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		form_action.login();
+	});
+</script>

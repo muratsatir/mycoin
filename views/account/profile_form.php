@@ -2,12 +2,12 @@
 	<div class="col-md-4 offset-md-4 text-center">
 		<h2>My Coin Profilim</h2>
 	</div>
-	<div class="row">         
+	<div class="row">
 		<div class="col-md-4 offset-md-4">
 		    <div class="text-right">
 				<a href="/index.php?path=wallet" class="btn btn-primary">Cüzdanım</a>
 				<a href="/index.php?path=logout" class="btn btn-primary">Çıkış</a>
-			</div>  
+			</div>
 			<form id="profile_form">
 				<div class="form-group">
 					<label for="username">Kullanıcı Adı</label>
@@ -16,11 +16,11 @@
 				<div class="form-group">
 					<label for="password">Şifre</label>
 					<input type="password" class="form-control" id="password" name="password" placeholder="Şifre" />
-				</div>                
+				</div>
 				<div class="form-group">
 					<label for="eposta">E-Posta</label>
-					<input type="email" class="form-control" id="eposta" name="eposta" value="<?php echo $user->profile->email ?>" placeholder="E-Posta" />
-				</div>     
+					<input type="email" class="form-control" id="email" name="email" value="<?php echo $user->profile->email ?>" placeholder="E-Posta" />
+				</div>
 				<button type="submit" class="btn btn-primary">Kaydet</button>
 			</form>
 		</div>

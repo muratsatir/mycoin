@@ -1,6 +1,34 @@
 var form_action={
 	login:function(){
-
+		$("#login_form").validate({
+			submitHandler: function(form) {
+			  $.ajax({
+					url: 'index.php?path=login',
+					dataType: 'json',
+					data : $('#login_form').serialize(),
+					type:'post',
+					success: function(json) {
+						 if(json['success']==false){
+							$(form).before('<div class="alert alert-danger">' + json['message'] + '</div>');
+						 }
+						 if(json['redirect']){
+							window.location.href=json['redirect'];
+						 }
+					},
+					error: function(xhr, ajaxOptions, thrownError) {
+						 alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+					}
+			  });
+			},
+			rules: {
+				username: {
+					required: true
+			  },
+			  	password:{
+					required: true
+			  }
+			 }
+		 });
 	},
 	register:function(){
 		$("#register_form").validate({
@@ -13,7 +41,7 @@ var form_action={
 					type:'post',
 					success: function(json) {
 						 if(json['redirect']){
-							  window.location.href=json['redirect'];
+							window.location.href=json['redirect'];
 						 }
 						 if(json['error']){
 							  $(element).parent().find('input').after('<div class="text-danger">' + json['error'] + '</div>');

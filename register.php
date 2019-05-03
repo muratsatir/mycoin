@@ -7,11 +7,13 @@ if(is_login()){
 		try{
 			$username=trim($_POST['username']);
 			$password=trim($_POST['password']);
+			$add_date=date("Y-m-d H:i:s");
 
 			$query = $db->prepare("INSERT INTO user SET username=:username, password=:password");
 
 			$query->bindParam(':username', $username, PDO::PARAM_STR);
 			$query->bindParam(':password', $password, PDO::PARAM_STR);
+			$query->bindParam(':add_date', $add_date, PDO::PARAM_STR);
 
 			$query->execute();
 

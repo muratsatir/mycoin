@@ -17,7 +17,16 @@ if(is_login()){
 
 			$query->execute();
 
-			$_SESSION['user_id']=$db->lastInsertId();
+			$user_id=$query->lastInsertId();
+
+			$user_wallet=md5(date("Y-m-d H:i:s").uniqid());
+
+			$profile_query= $db->prepare("INSERT INTO profile SET user_id:user_id, wallet=:wallet");
+			$profile_query->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+			$profile_query->bindParam(':wallet', $user_wallet, PDO::PARAM_STR);
+			$profile_query->execute();
+
+			$_SESSION['user_id']=$user_id;
 			$result['success']=true;
 			$result['redirect']='/index.php?path=profile';
 

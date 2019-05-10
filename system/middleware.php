@@ -21,9 +21,11 @@ function is_login(){
 
 		$user->profile = new stdClass();
 		$user->profile->email=(isset($profile_detail->email))?$profile_detail->email:'';
+		$user->profile->wallet=$profile_detail->wallet;
 
-		$wallet_query=$db->prepare("SELECT (SELECT SUM(amount) AS total FROM transactions WHERE to_user_id=:user_id) AS in_amout, (SELECT SUM(amount) AS total FROM transactions WHERE from_user_id=:user_id) AS out_amount FROM transactions LIMIT 1");
-		$wallet_query->bindParam(':user_id', $user_id, PDO::PARAM_STR);
+		$user_wallet=$user->profile->wallet;
+		$wallet_query=$db->prepare("SELECT (SELECT SUM(amount) AS total FROM transactions WHERE to_wallet=:wallet) AS in_amout, (SELECT SUM(amount) AS total FROM transactions WHERE from_wallet=:wallet) AS out_amount FROM transactions LIMIT 1");
+		$wallet_query->bindParam(':wallet', $user_wallet, PDO::PARAM_STR);
 		$wallet_query->execute();
 		$wallet_query_detail=$wallet_query->fetchObject();
 

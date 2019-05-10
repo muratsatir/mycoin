@@ -33,7 +33,7 @@ var form_action={
 	register:function(){
 		$("#register_form").validate({
 			submitHandler: function(form) {
-			  var element = $("#guest_next_button");
+			  var element = $("#username");
 			  $.ajax({
 					url: 'index.php?path=register',
 					dataType: 'json',
@@ -44,7 +44,10 @@ var form_action={
 							window.location.href=json['redirect'];
 						 }
 						 if(json['error']){
-							  $(element).parent().find('input').after('<div class="text-danger">' + json['error'] + '</div>');
+							  $(element).parent().before('<div class="alert alert-danger">' + json['error'] + '</div>');
+							  setTimeout(function(){
+								  $('.alert').fadeOut();
+							  },2500);
 						 }
 					},
 					error: function(xhr, ajaxOptions, thrownError) {

@@ -30,6 +30,6 @@
 <script src="/assets/vendor/jquery-validation-1.19.0/localization/messages_tr.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		form_action.profile_update();
+		form_action.register();
 	});
 </script>

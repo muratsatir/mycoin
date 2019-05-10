@@ -22,6 +22,7 @@ function is_login(){
 		$user->profile = new stdClass();
 		$user->profile->email=(isset($profile_detail->email))?$profile_detail->email:'';
 		$user->profile->wallet=$profile_detail->wallet;
+		$user->profile->admin=$profile_detail->admin;
 
 		$user_wallet=$user->profile->wallet;
 		$wallet_query=$db->prepare("SELECT (SELECT SUM(amount) AS total FROM transactions WHERE to_wallet=:wallet) AS in_amout, (SELECT SUM(amount) AS total FROM transactions WHERE from_wallet=:wallet) AS out_amount FROM transactions LIMIT 1");
@@ -31,6 +32,8 @@ function is_login(){
 
 		$user->wallet = new stdClass();
 		$user->wallet->total=(float)$wallet_query_detail->in_amount-(float)$wallet_query_detail->out_amount;
+		$user->wallet->in_amount=(float)$wallet_query_detail->in_amount;
+		$user->wallet->out_amount=(float)$wallet_query_detail->out_amount;
 		return true;
 	}
 	else{
